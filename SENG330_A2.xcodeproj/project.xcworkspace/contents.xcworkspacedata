@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../SENG330_A2/index.cpp">
+   </FileRef>
+   <FileRef
+      location = "group:../SENG330_A2/index.h">
+   </FileRef>
+   <FileRef
       location = "self:SENG330_A2.xcodeproj">
    </FileRef>
 </Workspace>
