@@ -8,8 +8,57 @@
 
 #include <iostream>
 
+using namespace std;
+
+// Base class
+class Machine
+{
+    public:
+  
+    protected:
+        int TotalTreadmills;
+        int TotalElipticals;
+};
+
+// Derived class
+class Treadmill: public Machine
+{
+    public:
+        void addTreadmills(int x)
+        {
+            TotalTreadmills = TotalTreadmills + x;
+        }
+        int TotalTreads(){
+            return TotalTreadmills;
+        }
+};
+
+// Derived class
+class Eliptical: public Machine
+{
+    public:
+        void addElipticals(int x)
+        {
+            TotalElipticals = TotalElipticals + x;
+        }
+        int TotalElip(){
+            return TotalElipticals;
+        }
+};
+
+
+
+
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Lets start SENG330_A2 Assignment\n";
+
+    std::cout << "Lets start SENG330-A2 Assignment\n";
+    Eliptical Elip;
+    Treadmill Tread;
+    Elip.addElipticals(5);
+    Tread.addTreadmills(7);
+    cout << "Total Elipticals: " << Elip.TotalElip() << endl;
+    cout << "Total Treadmills: " << Tread.TotalTreads();
+
+    
     return 0;
 }
