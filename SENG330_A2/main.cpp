@@ -7,8 +7,8 @@
 //
 #include <vector>
 #include <iostream>
+#include <string>
 using namespace std;
-const int N = 4;
 
 
 // Base class
@@ -16,29 +16,34 @@ class Machine
 {
     public:
         virtual Machine* clone() const = 0;
+        string name;
         virtual void store() const = 0;
         virtual ~Machine() { }
+        void setName(string d){ name = d;}
 
-    
-    protected:
-        int TotalTreadmills;
-        int TotalElipticals;
+
 };
 
-// Concrete prototypes : Eliptical, Treadmill
+// Concrete prototypes and Derived classes : Eliptical, Treadmill
 
 class Eliptical : public Machine
 {
     public:
         Machine*   clone() const { return new Eliptical; }
-        void store() const {  }
+        void setName(string d){ name = d;}
+        void store() const { cout << "Eliptical " << name <<endl;  }
+
 };
+
 
 class Treadmill : public Machine
 {
     public:
         Machine* clone() const { return new Treadmill; }
-        void store() const {  }
+        void setName(string d){ name = d;}
+    void store() const { cout << "Treadmill " << name <<endl; }
+
+
 };
 
 // makeMachine() calls Concrete Portotype's clone() method
@@ -49,7 +54,7 @@ class MachineManager {
         ~MachineManager(){}
     
     private:
-        static Machine* mMachineTypes[N];
+        static Machine* mMachineTypes[1000];
 };
 
 
@@ -73,28 +78,43 @@ struct Destruct
 
 // Client
 int main() {
-    vector<Machine*> Mach(N);
-    int choice;
-    int x = 0;
-    int y = 0;
-    cout << "Type in 1 to add Treadmills \nType in 2 to add Elipticals \nType in 0 to finish\n";
+    vector<Machine*> Mach(1000);
+    int choice;     //Client choice machine to add into gym.
+    int TotalTreadmills = 0;      //Keeps track of the number of treadmills.
+    int TotalElipticals = 0;      //Keeps track of the number of elipticals
+    string name;
 
+    int i = 0;
     while (true) {
+        cout << "What would you like to add? \nType in a 1 to add Treadmill or a 2 to add Eliptical.\n";
         cin >> choice;
-        if (choice <= 0 || choice >= N)
+        i = i + 1;
+        if (choice <= 0){
+            cout <<"\n";
             break;
-            if(choice == 1)
-                x = x + 1;
-            if(choice == 2)
-                y = y + 1;
-        Mach[choice] = MachineManager::makeMachine( choice );
+        }
+        if(choice == 1){
+            TotalTreadmills = TotalTreadmills + 1;
+            cout << "What is the name of the Treadmill?\n";
+            cin >> name;
+        }
+        if(choice == 2){
+            TotalElipticals = TotalElipticals + 1;
+            cout << "What is the name of the Eliptical?\n";
+            cin >> name;
+        }
+        cout << "\n";
+        Mach[i] = MachineManager::makeMachine( choice );
+        Mach[i]->setName(name);
     }
     
-    for (int i = 1; i < Mach.size(); ++i)
+    for (int i = 1; i < Mach.size(); ++i){
         if(Mach[i]) Mach[i]->store();
+    }
     
-    cout << "Total Treadmills: " << x << endl;
-    cout << "Total Elipticals: " << y << endl;
+    cout << "\nTotal Machines: " << TotalElipticals+TotalTreadmills << endl;
+    cout << "   -->Treadmills: " << TotalTreadmills << endl;
+    cout << "   -->Elipticals: " << TotalElipticals << endl;
     Destruct d;
     // this calls Destruct::operator()
     for_each(Mach.begin(), Mach.end(), d);
