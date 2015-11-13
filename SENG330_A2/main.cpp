@@ -77,35 +77,44 @@ struct Destruct
 };
 
 // Client
-int main() {
+int main(int argc, char* argv[]) {
     vector<Machine*> Mach(1000);
-    int choice;     //Client chooses machine to add into gym.
+    int choice = -1;               //Client chooses machine to add into gym.
     int TotalTreadmills = 0;      //Keeps track of the number of treadmills.
     int TotalElipticals = 0;      //Keeps track of the number of elipticals
     string name;
+    string add;
+   
 
     int i = 0;
     while (true) {
-        cout << "What would you like to add? \nType in a 1 to add Treadmill or a 2 to add Eliptical. Type in 0 if you are done adding.\n";
-        cin >> choice;
+        cout << "What type of machine are u looking to add? \nType in Exit to end\n";
+        cin >> add;
         i = i + 1;
-        if (choice <= 0){
+        if (add == "exit" || add == "Exit"){
+            choice = 0;
             cout <<"\n";
             break;
         }
-        if(choice == 1){
+        if(add == "Treadmill" || add == "treadmill"){
             TotalTreadmills = TotalTreadmills + 1;
+            choice = 1;
             cout << "What is the name of the Treadmill?\n";
             cin >> name;
         }
-        if(choice == 2){
+        if(add == "Eliptical" || add == "eliptical"){
             TotalElipticals = TotalElipticals + 1;
+            choice = 2;
             cout << "What is the name of the Eliptical?\n";
             cin >> name;
         }
         cout << "\n";
-        Mach[i] = MachineManager::makeMachine( choice );
-        Mach[i]->setName(name);
+        if(choice != -1){
+            Mach[i] = MachineManager::makeMachine( choice );
+            Mach[i]->setName(name);
+            choice = -1;
+        }
+        else{ cout <<"Invalid machine. You can not add that machine or you have a spelling error. You can add a Treadmill or an Eliptical\n" <<endl;}
     }
     
     for (int i = 1; i < Mach.size(); ++i){
