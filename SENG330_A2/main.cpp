@@ -5,6 +5,7 @@
 //  Created by Shawn Singh Dhaliwal on 2015-11-11.
 //  Copyright (c) 2015 Shawn Singh Dhaliwal. All rights reserved.
 //
+
 #include <vector>
 #include <iostream>
 #include <string>
@@ -21,7 +22,6 @@ class Machine
         virtual ~Machine() { }
         void setName(string d){ name = d;}
 
-
 };
 
 // Concrete prototypes and Derived classes : Eliptical, Treadmill
@@ -30,7 +30,7 @@ class Eliptical : public Machine
 {
     public:
         Machine*   clone() const { return new Eliptical; }
-        void setName(string d){ name = d;}
+        //void setName(string d){ name = d;}
         void store() const { cout << "Eliptical " << name <<endl;  }
 
 };
@@ -40,8 +40,8 @@ class Treadmill : public Machine
 {
     public:
         Machine* clone() const { return new Treadmill; }
-        void setName(string d){ name = d;}
-    void store() const { cout << "Treadmill " << name <<endl; }
+      //  void setName(string d){ name = d;}
+        void store() const { cout << "Treadmill " << name <<endl; }
 
 
 };
@@ -79,14 +79,14 @@ struct Destruct
 // Client
 int main() {
     vector<Machine*> Mach(1000);
-    int choice;     //Client choice machine to add into gym.
+    int choice;     //Client chooses machine to add into gym.
     int TotalTreadmills = 0;      //Keeps track of the number of treadmills.
     int TotalElipticals = 0;      //Keeps track of the number of elipticals
     string name;
 
     int i = 0;
     while (true) {
-        cout << "What would you like to add? \nType in a 1 to add Treadmill or a 2 to add Eliptical.\n";
+        cout << "What would you like to add? \nType in a 1 to add Treadmill or a 2 to add Eliptical. Type in 0 if you are done adding.\n";
         cin >> choice;
         i = i + 1;
         if (choice <= 0){
@@ -111,10 +111,11 @@ int main() {
     for (int i = 1; i < Mach.size(); ++i){
         if(Mach[i]) Mach[i]->store();
     }
-    
+    //Print out total number of machines, as well as number of Treadmills and Elipticals.
     cout << "\nTotal Machines: " << TotalElipticals+TotalTreadmills << endl;
     cout << "   -->Treadmills: " << TotalTreadmills << endl;
     cout << "   -->Elipticals: " << TotalElipticals << endl;
+    
     Destruct d;
     // this calls Destruct::operator()
     for_each(Mach.begin(), Mach.end(), d);

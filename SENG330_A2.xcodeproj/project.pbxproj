@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		921E21121BF45ADA00CCDB07 /* index.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 921E21111BF45ADA00CCDB07 /* index.cpp */; };
 		928E7A9A1BF4599D0059E34F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 928E7A991BF4599D0059E34F /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -24,7 +23,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		921E21111BF45ADA00CCDB07 /* index.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = index.cpp; sourceTree = "<group>"; };
 		928E7A961BF4599D0059E34F /* SENG330_A2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SENG330_A2; sourceTree = BUILT_PRODUCTS_DIR; };
 		928E7A991BF4599D0059E34F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -60,7 +58,6 @@
 			isa = PBXGroup;
 			children = (
 				928E7A991BF4599D0059E34F /* main.cpp */,
-				921E21111BF45ADA00CCDB07 /* index.cpp */,
 			);
 			path = SENG330_A2;
 			sourceTree = "<group>";
@@ -121,7 +118,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				921E21121BF45ADA00CCDB07 /* index.cpp in Sources */,
 				928E7A9A1BF4599D0059E34F /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
