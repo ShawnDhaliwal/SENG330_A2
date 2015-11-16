@@ -1,54 +1,88 @@
-//
-//  main.cpp
-//  SENG330_A2
-//
-//  Created by Shawn Singh Dhaliwal on 2015-11-11.
-//  Copyright (c) 2015 Shawn Singh Dhaliwal. All rights reserved.
-//
+/*! \mainpage My Personal Index Page
+ *
+ * \section intro_sec Introduction
+ *
+ * Hello George!
+ * This is my doxygen genreated browsable document of my SENG330 Assignment 2.
+ * It includes descriptions of almost everything I can think of in my files.
+ * I obviously can not take snapshots of every little bit of my documentation but I will try to get the 
+ * point across that I have learned to use doxygen.
+ *
+ *
+ */
+
+/**
+ * @file   main.cpp
+ * @Author Shawn Dhaliwal
+ * @date   Nov 11, 2015
+ * @brief  Program uses prototype design pattern to create Machines and stores them.
+ *
+ * The user can either add an Elliptical or a Treadmill. They can then choose the name of the machine. Machines are continuously added until users types in Exit. Then all machines are printed out along with a numerical total.
+ */
+
+/*! \namespace SENG330_A2
+ \brief My project.
+ 
+ */
 
 #include <vector>
 #include <iostream>
 #include <string>
-#include "common.h"
+#include "functions.h"
+#include "A2.pb.h"
 using namespace std;
 
 
-// Base class
+//!  This is the one and only base class. It has two derived classes called Treadmill and Elliptical.
+/*!
+ A more elaborate class description.
+ */
 class Machine
 {
 public:
     virtual Machine* clone() const = 0;
+    //! Name of machine.
+    /*! */
     string name;
+    
     virtual void store() const = 0;
+    //! This is the deconstructor for Machine class.
+    /*!  */
     virtual ~Machine() { }
+    //! This sets the name of the Machine.
+    /*!  */
     void setName(string d){ name = d;}
     
 };
 
-// Concrete prototypes and Derived classes : Eliptical, Treadmill
-
+//!  This class is a derived class of the Machine class.
+/*!
+ A more elaborate class description.
+ */
 class Elliptical : public Machine
 {
 public:
     Machine*   clone() const { return new Elliptical; }
-    //void setName(string d){ name = d;}
     void store() const { cout << "Elliptical " << name <<endl;  }
     
 };
 
-
+//!  This class is a derived class of the Machine class.
+/*!
+ */
 class Treadmill : public Machine
 {
 public:
     Machine* clone() const { return new Treadmill; }
-    //  void setName(string d){ name = d;}
     void store() const { cout << "Treadmill " << name <<endl; }
     
     
 };
 
-// makeMachine() calls Concrete Portotype's clone() method
-// inherited from Prototype
+
+//!  This class has a function called makeMachine(). It calls Concrete Portotype's clone() method inherited from Prototype
+/*!
+ */
 class MachineManager {
 public:
     static Machine* makeMachine( int choice );
@@ -58,18 +92,24 @@ private:
     static Machine* mMachineTypes[1000];
 };
 
-
+//! Creates new Treadmill or new Elliptical.
+/*!  */
 Machine* MachineManager::mMachineTypes[] =
 {
     0, new Treadmill, new Elliptical
 };
 
+/** Sends to MachineManager which machine to make */
+//! Sends to MachineManager which machine to make.
+/*! */
 Machine* MachineManager::makeMachine( int choice )
 {
     return mMachineTypes[choice]->clone();
 }
 
-// for_each op ()
+//!  for_each op ().
+/*!
+ */
 struct Destruct
 {
     void operator()(Machine *a) const {
@@ -79,13 +119,18 @@ struct Destruct
 
 
 
-// Client interacts here.
 int main(int argc, char* argv[]) {
     
     vector<Machine*> Mach(1000);
-    int choice = -1;               //Client chooses machine to add into gym.
-    int TotalTreadmills = 0;      //Keeps track of the number of treadmills.
-    int TotalElipticals = 0;      //Keeps track of the number of elipticals
+    int choice = -1;
+    //!  Total Treadmills tracker().
+    /*!
+     */
+    int TotalTreadmills = 0;
+    //!  Total Ellipticals tracker().
+    /*!
+     */
+    int TotalElipticals = 0;
     string name;
     string add;
     
@@ -120,13 +165,17 @@ int main(int argc, char* argv[]) {
     for (int i = 1; i < Mach.size(); ++i){
         if(Mach[i]) Mach[i]->store();
     }
-    //Print out total number of machines, as well as number of Treadmills and Elipticals.
+    //!  Prints out total number of machines, as well as number of Treadmills and Ellipticals().
+    /*!
+     */
     cout << "\nTotal Machines: " << TotalElipticals+TotalTreadmills << endl;
     cout << "   -->Treadmills: " << TotalTreadmills << endl;
     cout << "   -->Ellipticals: " << TotalElipticals << endl;
     
     Destruct d;
-    // this calls Destruct::operator()
+    //!  This calls the Destruct::operator().
+    /*!
+     */
     for_each(Mach.begin(), Mach.end(), d);
     
     return 0;

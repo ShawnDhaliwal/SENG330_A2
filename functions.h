@@ -1,10 +1,11 @@
-//
-//  common.h
-//  SENG330_A2
-//
-//  Created by Shawn Singh Dhaliwal on 2015-11-15.
-//  Copyright (c) 2015 Shawn Singh Dhaliwal. All rights reserved.
-//
+/**
+ * @file   functions.h
+ * @Author Shawn Dhaliwal
+ * @date   Nov 11, 2015
+ * @brief  This file contains 3 functions that are used by my main.cpp file.
+ *
+ * One function gets the machinetype from user, the other gets the name if its in Elliptical, and the other gets the name if its a Treadmill.
+ */
 
 #ifndef SENG330_A2_common_h
 #define SENG330_A2_common_h
