@@ -9,58 +9,59 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include "common.h"
 using namespace std;
 
 
 // Base class
 class Machine
 {
-    public:
-        virtual Machine* clone() const = 0;
-        string name;
-        virtual void store() const = 0;
-        virtual ~Machine() { }
-        void setName(string d){ name = d;}
-
+public:
+    virtual Machine* clone() const = 0;
+    string name;
+    virtual void store() const = 0;
+    virtual ~Machine() { }
+    void setName(string d){ name = d;}
+    
 };
 
 // Concrete prototypes and Derived classes : Eliptical, Treadmill
 
-class Eliptical : public Machine
+class Elliptical : public Machine
 {
-    public:
-        Machine*   clone() const { return new Eliptical; }
-        //void setName(string d){ name = d;}
-        void store() const { cout << "Eliptical " << name <<endl;  }
-
+public:
+    Machine*   clone() const { return new Elliptical; }
+    //void setName(string d){ name = d;}
+    void store() const { cout << "Elliptical " << name <<endl;  }
+    
 };
 
 
 class Treadmill : public Machine
 {
-    public:
-        Machine* clone() const { return new Treadmill; }
-      //  void setName(string d){ name = d;}
-        void store() const { cout << "Treadmill " << name <<endl; }
-
-
+public:
+    Machine* clone() const { return new Treadmill; }
+    //  void setName(string d){ name = d;}
+    void store() const { cout << "Treadmill " << name <<endl; }
+    
+    
 };
 
 // makeMachine() calls Concrete Portotype's clone() method
 // inherited from Prototype
 class MachineManager {
-    public:
-        static Machine* makeMachine( int choice );
-        ~MachineManager(){}
+public:
+    static Machine* makeMachine( int choice );
+    ~MachineManager(){}
     
-    private:
-        static Machine* mMachineTypes[1000];
+private:
+    static Machine* mMachineTypes[1000];
 };
 
 
 Machine* MachineManager::mMachineTypes[] =
 {
-    0, new Treadmill, new Eliptical
+    0, new Treadmill, new Elliptical
 };
 
 Machine* MachineManager::makeMachine( int choice )
@@ -76,20 +77,22 @@ struct Destruct
     }
 };
 
+
+
 // Client
 int main(int argc, char* argv[]) {
+    
     vector<Machine*> Mach(1000);
     int choice = -1;               //Client chooses machine to add into gym.
     int TotalTreadmills = 0;      //Keeps track of the number of treadmills.
     int TotalElipticals = 0;      //Keeps track of the number of elipticals
     string name;
     string add;
-   
-
+    
     int i = 0;
     while (true) {
-        cout << "What type of machine are u looking to add? \nType in Exit to end\n";
-        cin >> add;
+        add = MachineType();
+
         i = i + 1;
         if (add == "exit" || add == "Exit"){
             choice = 0;
@@ -99,14 +102,12 @@ int main(int argc, char* argv[]) {
         if(add == "Treadmill" || add == "treadmill"){
             TotalTreadmills = TotalTreadmills + 1;
             choice = 1;
-            cout << "What is the name of the Treadmill?\n";
-            cin >> name;
+            name = TreadmillName();
         }
-        if(add == "Eliptical" || add == "eliptical"){
+        if(add == "Elliptical" || add == "elliptical"){
             TotalElipticals = TotalElipticals + 1;
             choice = 2;
-            cout << "What is the name of the Eliptical?\n";
-            cin >> name;
+            name = EllipticalName();
         }
         cout << "\n";
         if(choice != -1){
@@ -114,7 +115,7 @@ int main(int argc, char* argv[]) {
             Mach[i]->setName(name);
             choice = -1;
         }
-        else{ cout <<"Invalid machine. You can not add that machine or you have a spelling error. You can add a Treadmill or an Eliptical\n" <<endl;}
+        else{ cout <<"Invalid machine. You can not add that machine or you have a spelling error. You can add a Treadmill or an Elliptical\n" <<endl;}
     }
     
     for (int i = 1; i < Mach.size(); ++i){
@@ -123,7 +124,7 @@ int main(int argc, char* argv[]) {
     //Print out total number of machines, as well as number of Treadmills and Elipticals.
     cout << "\nTotal Machines: " << TotalElipticals+TotalTreadmills << endl;
     cout << "   -->Treadmills: " << TotalTreadmills << endl;
-    cout << "   -->Elipticals: " << TotalElipticals << endl;
+    cout << "   -->Ellipticals: " << TotalElipticals << endl;
     
     Destruct d;
     // this calls Destruct::operator()
