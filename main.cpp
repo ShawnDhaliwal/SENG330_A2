@@ -79,7 +79,7 @@ struct Destruct
 
 
 
-// Client
+// Client interacts here.
 int main(int argc, char* argv[]) {
     
     vector<Machine*> Mach(1000);
@@ -92,7 +92,6 @@ int main(int argc, char* argv[]) {
     int i = 0;
     while (true) {
         add = MachineType();
-
         i = i + 1;
         if (add == "exit" || add == "Exit"){
             choice = 0;
