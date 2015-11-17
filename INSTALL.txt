@@ -1,0 +1,31 @@
+*** THIS FILES HAS INSTRUCTIONS ON HOW TO INSTALL SENG330_A2. IT ALSO SHOWS YOU HOW TO SET UP THE GOOGLE TEST CLASS, Test.cpp, THAT WILL TEST MY ASSIGNMENT ***
+
+You will need:
+        -> Xcode
+        -> Mac OS X operating system
+
+----- > SETTING UP THE ASSIGNMENT TO COMPILE AND RUN
+            1. First download and install Xcode from the app store.
+            2. Set up Xcode to run assignment. To do this, open up Xcode, click on start new project. Under Mac OS X, click on applications and choose 'Command Line Tool'. Click on next, choose SENG330_A2 as the name, click next, choose Desktop to be the location to save the project, click create. By now, you should have a main.cpp class set up for you and a folder on your desktop that was created by Xcode with the title of SENG330_A2.
+            3. Create a new header file to add to this project, call it functions.h. To do this, hold command and press N. Then under OS X, click on source, click Header File, click next, call it functions.h and create.
+            4. Open up a web browser and go to this link: https://github.com/ShawnDhaliwal/SENG330_A2
+            5. From this link, copy and paste the code in main.cpp into your main.cpp that we set up just now in Xcode.
+            6. From this link, copy and paste the code in the functions.h file into your functions.h file that we set up just now in Xcode.
+            7. Save
+            8. Now click on play button on the top left of the xcode window to compile and run. The code should now be executing and have a prompt pop up on the bottom right asking for which type of machine you would like to add. Now go ahead and add machines!
+
+----- > SETTING UP THE GOOGLE TEST CASE FILE TO COMPILE AND RUN
+            1. Follow the step by step instructions provided by this link..
+                http://bitrage.de/wp/google-test-with-xcode-6-and-c11/
+               Keep in mind that you already have a project set up to test called SENG330_A2.
+            2. By now you should have gtest.framework inside your xcode project, and second target other than the one you had to start with. Click on the second target folder set up called 'Tests' inside the project, if you followed the insctructions provided by the link. Now go to this link ..
+                https://github.com/ShawnDhaliwal/SENG330_A2
+                .. and copy and paste the code in Test.cpp into the main.cpp of Tests target folder. For simplicity, rename the main.cpp in your Test target folder to Test.cpp.
+            3. Now go to product tab on the top, scheme, and make sure Tests has a check mark next to it.
+            4. Save
+            5. now click on the play button on the top left of the xcode window to compile and run the Test.cpp file inside Tests target folder. On the bottom right you should have a prompt. Read the title of the test being run, and type in exactly what it is asking for. Your input should be in this order:
+                    -- Treadmill
+                    -- Elliptical
+                    -- T100
+                    -- E100
+                After this, it should say all 4 tests were passed

@@ -1,6 +1,6 @@
-/*! \mainpage My Personal Index Page
+/*! \mainpage My SENG330 Assignment
  *
- * \section intro_sec Introduction
+ * \section intro_sec Introduction to Assignment
  *
  * Hello George!
  * This is my doxygen genreated browsable document of my SENG330 Assignment 2.
@@ -29,7 +29,6 @@
 #include <iostream>
 #include <string>
 #include "functions.h"
-#include "A2.pb.h"
 using namespace std;
 
 
