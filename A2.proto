@@ -1,0 +1,12 @@
+package SENG330_A2;
+
+message Machine {
+    oneof subtypes {
+        Treadmill Treadmill = 1;
+        Elliptical Elliptical = 2;
+    }
+}
+message Elliptical {
+}
+message Treadmill {
+}
